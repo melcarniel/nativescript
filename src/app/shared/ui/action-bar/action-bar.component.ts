@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { isAndroid } from 'tns-core-modules/platform';
 import { Page } from 'tns-core-modules/ui/page';
 import { RouterExtensions } from 'nativescript-angular/router';
+import { UIService } from './ui.service';
 
 declare let android: any;
 
@@ -14,11 +15,17 @@ declare let android: any;
 export class ActionBarComponent implements OnInit {
 
   @Input() title: string;
+  @Input() hasMenu: boolean = true;
 
   constructor(private page: Page,
-              private router: RouterExtensions) { }
+              private router: RouterExtensions,
+              private uiService: UIService) { }
 
   ngOnInit() {
+  }
+
+  get android(){
+    return isAndroid;
   }
 
   get canGoBack(){
@@ -38,6 +45,10 @@ export class ActionBarComponent implements OnInit {
             (<any>android.graphics).PorterDuff.Mode.SRC_ATOP);
         }
     }
-}
+  }
+
+  onToggleMenu(){
+    this.uiService.toggleDrawer();
+  }
 
 }
