@@ -16,7 +16,7 @@ export class CurrentChallengeComponent {
     }
 
     onEdit(){
-        this.router.navigate(["/edit-challenge"], {transition: {name: "slideLeft"}})
+        this.router.navigate(["/tab-challenge/edit"], {transition: {name: "slideLeft"}})
     }
 
     

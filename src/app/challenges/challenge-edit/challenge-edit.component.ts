@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ns-challenge-edit',
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChallengeEditComponent implements OnInit {
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      console.log(paramMap.get('mode'));
+    });
   }
 
   

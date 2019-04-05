@@ -10,10 +10,15 @@ import { ChallengeTabsComponent } from './challenges/challenge-tabs/challenge-ta
 
 const routes: Routes = [
     {path: '', component: AuthComponent},
-    {path: 'edit-challenge', component: ChallengeEditComponent},
-    {path: 'tab-challenge', component: ChallengeTabsComponent, children: [
-        {path: 'today', component: TodayComponent, outlet: 'today'},
-        {path: 'current-challenge', component: CurrentChallengeComponent, outlet: 'currentChallenge'},
+    
+    {path: 'tab-challenge',  children: [
+        {path: 'tabs', component: ChallengeTabsComponent, children: [
+            {path: 'today', component: TodayComponent, outlet: 'today'},
+            {path: 'current-challenge', component: CurrentChallengeComponent, outlet: 'currentChallenge'},
+        ]},
+        {path: ':mode', component: ChallengeEditComponent},
+        {path: '', redirectTo: '/tab-challenge/tabs', pathMatch: 'full'}
+        
     ]}
 ];
 
